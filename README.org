@@ -1,0 +1,23 @@
+* FalsiScan: Make it look like a PDF has been hand signed and scanned
+#+begin_abstract
+For bureaucratic reasons, a colleague of mine had to print, sign, scan and send by email a high number of pages.
+To save trees, ink, time, and to stick it to the bureaucrats, I wrote this script.
+#+end_abstract
+[[file:falsiscan.png]]
+** Usage
+*** Create a signature sample
+- Print the [[file:Signature_guide.pdf]], 
+- sign in each of the full sized box (this will give 27 different signatures),
+- scan the resulting paper and save it as a pdf (called e.g. =signatures.pdf=),
+- run =./signdiv.sh signatures.pdf=,
+- check in =signatures= that you have 27 png files correctly cropped. You can manually edit the .png files to your liking.
+
+
+You can maintain multiple signature directories, or run the above again if you want more than 27 signatures.
+*** False-sign and False-scan a document
+- Get the PDF the bureaucrats want you to print, sign and scan (e.g. =document.pdf=),
+- run =./falsisign.sh document.pdf signatures 1000 2500 document-scanned.pdf=:
+  - The first argument is the document you need to sign/scan
+  - The second argument is the directory with all your different signatures
+  - The next two arguments are the X and Y coordinates of where your signature will be. The page dimension is 3560x4752.
+  - The last argument is the output file name.
